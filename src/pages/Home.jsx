@@ -13,7 +13,7 @@ export const Home = () => {
   const [tasks, setTasks] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
-  const handleIsDoneDisplayChange = e => setIsDoneDisplay(e.target.value);
+  const handleIsDoneDisplayChange = (e) => setIsDoneDisplay(e.target.value);
   useEffect(() => {
     axios
       .get(`${url}/lists`, {
@@ -21,10 +21,10 @@ export const Home = () => {
           authorization: `Bearer ${cookies.token}`,
         },
       })
-      .then(res => {
+      .then((res) => {
         setLists(res.data);
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`リストの取得に失敗しました。${err}`);
       });
   }, []);
@@ -39,16 +39,16 @@ export const Home = () => {
             authorization: `Bearer ${cookies.token}`,
           },
         })
-        .then(res => {
+        .then((res) => {
           setTasks(res.data.tasks);
         })
-        .catch(err => {
+        .catch((err) => {
           setErrorMessage(`タスクの取得に失敗しました。${err}`);
         });
     }
   }, [lists]);
 
-  const handleSelectList = id => {
+  const handleSelectList = (id) => {
     setSelectListId(id);
     axios
       .get(`${url}/lists/${id}/tasks`, {
@@ -56,10 +56,10 @@ export const Home = () => {
           authorization: `Bearer ${cookies.token}`,
         },
       })
-      .then(res => {
+      .then((res) => {
         setTasks(res.data.tasks);
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`タスクの取得に失敗しました。${err}`);
       });
   };
@@ -76,9 +76,7 @@ export const Home = () => {
                 <Link to="/list/new">リスト新規作成</Link>
               </p>
               <p>
-                <Link to={`/lists/${selectListId}/edit`}>
-                  選択中のリストを編集
-                </Link>
+                <Link to={`/lists/${selectListId}/edit`}>選択中のリストを編集</Link>
               </p>
             </div>
           </div>
@@ -102,19 +100,12 @@ export const Home = () => {
               <Link to="/task/new">タスク新規作成</Link>
             </div>
             <div className="display-select-wrapper">
-              <select
-                onChange={handleIsDoneDisplayChange}
-                className="display-select"
-              >
+              <select onChange={handleIsDoneDisplayChange} className="display-select">
                 <option value="todo">未完了</option>
                 <option value="done">完了</option>
               </select>
             </div>
-            <Tasks
-              tasks={tasks}
-              selectListId={selectListId}
-              isDoneDisplay={isDoneDisplay}
-            />
+            <Tasks tasks={tasks} selectListId={selectListId} isDoneDisplay={isDoneDisplay} />
           </div>
         </div>
       </main>
@@ -123,7 +114,7 @@ export const Home = () => {
 };
 
 // 表示するタスク
-const Tasks = props => {
+const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props;
   if (tasks === null) return <></>;
 
@@ -131,15 +122,12 @@ const Tasks = props => {
     return (
       <ul>
         {tasks
-          .filter(task => {
+          .filter((task) => {
             return task.done === true;
           })
           .map((task, key) => (
             <li key={key} className="task-item">
-              <Link
-                to={`/lists/${selectListId}/tasks/${task.id}`}
-                className="task-item-link"
-              >
+              <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
                 {task.title}
                 <br />
                 {task.done ? "完了" : "未完了"}
@@ -153,15 +141,12 @@ const Tasks = props => {
   return (
     <ul>
       {tasks
-        .filter(task => {
+        .filter((task) => {
           return task.done === false;
         })
         .map((task, key) => (
           <li key={key} className="task-item">
-            <Link
-              to={`/lists/${selectListId}/tasks/${task.id}`}
-              className="task-item-link"
-            >
+            <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
               {task.title}
               <br />
               {task.done ? "完了" : "未完了"}

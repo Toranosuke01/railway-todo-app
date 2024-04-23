@@ -14,9 +14,9 @@ export const EditTask = () => {
   const [detail, setDetail] = useState("");
   const [isDone, setIsDone] = useState();
   const [errorMessage, setErrorMessage] = useState("");
-  const handleTitleChange = e => setTitle(e.target.value);
-  const handleDetailChange = e => setDetail(e.target.value);
-  const handleIsDoneChange = e => setIsDone(e.target.value === "done");
+  const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleDetailChange = (e) => setDetail(e.target.value);
+  const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
   const onUpdateTask = () => {
     console.log(isDone);
     const data = {
@@ -31,11 +31,11 @@ export const EditTask = () => {
           authorization: `Bearer ${cookies.token}`,
         },
       })
-      .then(res => {
+      .then((res) => {
         console.log(res.data);
         navigate.push("/");
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`更新に失敗しました。${err}`);
       });
   };
@@ -50,7 +50,7 @@ export const EditTask = () => {
       .then(() => {
         navigate("/");
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`削除に失敗しました。${err}`);
       });
   };
@@ -62,13 +62,13 @@ export const EditTask = () => {
           authorization: `Bearer ${cookies.token}`,
         },
       })
-      .then(res => {
+      .then((res) => {
         const task = res.data;
         setTitle(task.title);
         setDetail(task.detail);
         setIsDone(task.done);
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
       });
   }, []);
@@ -118,18 +118,10 @@ export const EditTask = () => {
             />
             完了
           </div>
-          <button
-            type="button"
-            className="delete-task-button"
-            onClick={onDeleteTask}
-          >
+          <button type="button" className="delete-task-button" onClick={onDeleteTask}>
             削除
           </button>
-          <button
-            type="button"
-            className="edit-task-button"
-            onClick={onUpdateTask}
-          >
+          <button type="button" className="edit-task-button" onClick={onUpdateTask}>
             更新
           </button>
         </form>

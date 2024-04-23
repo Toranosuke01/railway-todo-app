@@ -14,9 +14,9 @@ export const NewTask = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const navigate = useNavigate();
-  const handleTitleChange = e => setTitle(e.target.value);
-  const handleDetailChange = e => setDetail(e.target.value);
-  const handleSelectList = id => setSelectListId(id);
+  const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleDetailChange = (e) => setDetail(e.target.value);
+  const handleSelectList = (id) => setSelectListId(id);
   const onCreateTask = () => {
     const data = {
       title: title,
@@ -33,7 +33,7 @@ export const NewTask = () => {
       .then(() => {
         navigate("/");
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`タスクの作成に失敗しました。${err}`);
       });
   };
@@ -45,11 +45,11 @@ export const NewTask = () => {
           authorization: `Bearer ${cookies.token}`,
         },
       })
-      .then(res => {
+      .then((res) => {
         setLists(res.data);
         setSelectListId(res.data[0]?.id);
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`リストの取得に失敗しました。${err}`);
       });
   }, []);
@@ -64,7 +64,7 @@ export const NewTask = () => {
           <label>リスト</label>
           <br />
           <select
-            onChange={e => handleSelectList(e.target.value)}
+            onChange={(e) => handleSelectList(e.target.value)}
             className="new-task-select-list"
           >
             {lists.map((list, key) => (
@@ -76,25 +76,13 @@ export const NewTask = () => {
           <br />
           <label>タイトル</label>
           <br />
-          <input
-            type="text"
-            onChange={handleTitleChange}
-            className="new-task-title"
-          />
+          <input type="text" onChange={handleTitleChange} className="new-task-title" />
           <br />
           <label>詳細</label>
           <br />
-          <textarea
-            type="text"
-            onChange={handleDetailChange}
-            className="new-task-detail"
-          />
+          <textarea type="text" onChange={handleDetailChange} className="new-task-detail" />
           <br />
-          <button
-            type="button"
-            className="new-task-button"
-            onClick={onCreateTask}
-          >
+          <button type="button" className="new-task-button" onClick={onCreateTask}>
             作成
           </button>
         </form>

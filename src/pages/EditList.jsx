@@ -12,7 +12,7 @@ export const EditList = () => {
   const [title, setTitle] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
-  const handleTitleChange = e => setTitle(e.target.value);
+  const handleTitleChange = (e) => setTitle(e.target.value);
   const onUpdateList = () => {
     const data = {
       title: title,
@@ -27,7 +27,7 @@ export const EditList = () => {
       .then(() => {
         navigate("/");
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`更新に失敗しました。 ${err}`);
       });
   };
@@ -42,7 +42,7 @@ export const EditList = () => {
       .then(() => {
         navigate("/");
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`削除に失敗しました。${err}`);
       });
   };
@@ -54,11 +54,11 @@ export const EditList = () => {
           authorization: `Bearer ${cookies.token}`,
         },
       })
-      .then(res => {
+      .then((res) => {
         const list = res.data;
         setTitle(list.title);
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`リスト情報の取得に失敗しました。${err}`);
       });
   }, []);
@@ -79,18 +79,10 @@ export const EditList = () => {
             onChange={handleTitleChange}
           />
           <br />
-          <button
-            type="button"
-            className="delete-list-button"
-            onClick={onDeleteList}
-          >
+          <button type="button" className="delete-list-button" onClick={onDeleteList}>
             削除
           </button>
-          <button
-            type="button"
-            className="edit-list-button"
-            onClick={onUpdateList}
-          >
+          <button type="button" className="edit-list-button" onClick={onUpdateList}>
             更新
           </button>
         </form>

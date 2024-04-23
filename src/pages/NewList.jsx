@@ -11,7 +11,7 @@ export const NewList = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const handleTitleChange = e => setTitle(e.target.value);
+  const handleTitleChange = (e) => setTitle(e.target.value);
   const onCreateList = () => {
     const data = {
       title: title,
@@ -26,7 +26,7 @@ export const NewList = () => {
       .then(() => {
         navigate("/");
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`リストの作成に失敗しました。${err}`);
       });
   };
@@ -40,17 +40,9 @@ export const NewList = () => {
         <form className="new-list-form">
           <label>タイトル</label>
           <br />
-          <input
-            type="text"
-            onChange={handleTitleChange}
-            className="new-list-title"
-          />
+          <input type="text" onChange={handleTitleChange} className="new-list-title" />
           <br />
-          <button
-            type="button"
-            onClick={onCreateList}
-            className="new-list-button"
-          >
+          <button type="button" onClick={onCreateList} className="new-list-button">
             作成
           </button>
         </form>

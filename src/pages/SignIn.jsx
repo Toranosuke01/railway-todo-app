@@ -9,24 +9,24 @@ import { signIn } from "../authSlice";
 import { url } from "../const";
 
 export const SignIn = () => {
-  const auth = useSelector(state => state.auth.isSignIn);
+  const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState();
   const [cookies, setCookie, removeCookie] = useCookies();
-  const handleEmailChange = e => setEmail(e.target.value);
-  const handlePasswordChange = e => setPassword(e.target.value);
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
   const onSignIn = () => {
     axios
       .post(`${url}/signin`, { email: email, password: password })
-      .then(res => {
+      .then((res) => {
         setCookie("token", res.data.token);
         dispatch(signIn());
         navigate("/");
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`サインインに失敗しました。${err}`);
       });
   };
@@ -44,19 +44,11 @@ export const SignIn = () => {
         <form className="signin-form">
           <label className="email-label">メールアドレス</label>
           <br />
-          <input
-            type="email"
-            className="email-input"
-            onChange={handleEmailChange}
-          />
+          <input type="email" className="email-input" onChange={handleEmailChange} />
           <br />
           <label className="password-label">パスワード</label>
           <br />
-          <input
-            type="password"
-            className="password-input"
-            onChange={handlePasswordChange}
-          />
+          <input type="password" className="password-input" onChange={handlePasswordChange} />
           <br />
           <button type="button" className="signin-button" onClick={onSignIn}>
             サインイン
