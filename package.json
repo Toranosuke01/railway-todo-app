@@ -23,7 +23,7 @@
     "eslint-plugin-react": "^7.34.1",
     "globals": "^15.0.0",
     "prettier": "^3.2.5",
-    "react-scripts": "4.0.3"
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
