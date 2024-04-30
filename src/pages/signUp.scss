@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+$primary-color: #242f9b;
+$font-color: #555555;
+$error-color: #ff3333;
+$button-height: 40px;
+$large-font-size: large;
+
+.signup {
+  width: 500px;
+  margin: 0 auto;
+
+  &-form {
+    margin: 25px 0;
+    color: $font-color;
+  }
+
+  .email-input,
+  .name-input,
+  .password-input {
+    width: 100%;
+    font-size: $large-font-size;
+    height: 30px;
+    margin-bottom: 25px;
+  }
+
+  &-button {
+    background-color: $primary-color;
+    color: #ffffff;
+    width: 100px;
+    height: $button-height;
+    border-radius: 5px;
+  }
+
+  .error-message {
+    color: $error-color;
+  }
+}

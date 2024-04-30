@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+$primary-color: #242f9b;
+$font-color: #555555;
+$error-color: #ff3333;
+
+.new-task {
+  width: 1000px;
+  margin: 0 auto;
+
+  &-form {
+    color: $font-color;
+  }
+
+  &-select-list,
+  &-title,
+  &-detail {
+    width: 300px;
+    margin-bottom: 25px;
+  }
+
+  &-detail {
+    height: 200px;
+  }
+
+  &-button {
+    background-color: $primary-color;
+    color: #ffffff;
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+  }
+}
+
+.error-message {
+  color: $error-color;
+}

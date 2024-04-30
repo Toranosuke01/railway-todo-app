@@ -1,0 +1,28 @@
+.signin {
+  width: 500px;
+  margin: 0 auto;
+}
+.signin-form {
+  margin: 25px 0;
+}
+.signin-button {
+  background-color: #242f9b;
+  color: #ffffff;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+}
+.signin .email-label,
+.signin .password-label {
+  color: #555555;
+}
+.signin .email-input,
+.signin .password-input {
+  width: 100%;
+  font-size: large;
+  height: 30px;
+  margin-bottom: 25px;
+}
+.signin .error-message {
+  color: #ff3333;
+}/*# sourceMappingURL=signin.css.map */
