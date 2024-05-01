@@ -5,24 +5,31 @@ import { url } from "../const";
 import { Header } from "../components/Header";
 import "../css/newTask.css";
 import { useNavigate } from "react-router-dom";
+import useCurrentTime from "../hooks/useCurrentTime";
 
 export const NewTask = () => {
   const [selectListId, setSelectListId] = useState();
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [limit, setLimit] = useState(useCurrentTime());
+  const [minLimit] = useState(useCurrentTime());
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const navigate = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
+  const hundleLimitChange = (e) => setLimit(e.target.value);
+
   const onCreateTask = () => {
     const data = {
-      title: title,
-      detail: detail,
+      title,
+      detail,
       done: false,
+      limit: `${limit}:00Z`,
     };
+    console.log(data);
 
     axios
       .post(`${url}/lists/${selectListId}/tasks`, data, {
@@ -81,6 +88,18 @@ export const NewTask = () => {
           <label>詳細</label>
           <br />
           <textarea type="text" onChange={handleDetailChange} className="new-task-detail" />
+          <br />
+          <label>期限</label>
+          <br />
+          <input
+            type="datetime-local"
+            value={limit}
+            min={minLimit}
+            max="2100-01-01T00:00"
+            onChange={hundleLimitChange}
+            className="todo-limit"
+          />
+          <br />
           <br />
           <button type="button" className="new-task-button" onClick={onCreateTask}>
             作成
