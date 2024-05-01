@@ -49,6 +49,25 @@ export const Home = () => {
     }
   }, [lists]);
 
+  const handleKeyDown = (event, index) => {
+    // 右矢印キーが押された場合
+    if (event.key === "ArrowRight") {
+      event.preventDefault(); // スクロールを防ぐ
+      const nextIndex = (index + 1) % lists.length;
+      handleSelectList(lists[nextIndex].id);
+      // フォーカスを新しいタブに移動
+      document.getElementById(`list-item-${lists[nextIndex].id}`).focus();
+    }
+    // 左矢印キーが押された場合
+    else if (event.key === "ArrowLeft") {
+      event.preventDefault(); // スクロールを防ぐ
+      const prevIndex = index > 0 ? index - 1 : lists.length - 1;
+      handleSelectList(lists[prevIndex].id);
+      // フォーカスを新しいタブに移動
+      document.getElementById(`list-item-${lists[prevIndex].id}`).focus();
+    }
+  };
+
   const handleSelectList = (id) => {
     setSelectListId(id);
     axios
@@ -81,14 +100,19 @@ export const Home = () => {
               </p>
             </div>
           </div>
-          <ul className="list-tab">
-            {lists.map((list, key) => {
+          <ul className="list-tab" role="tablist">
+            {lists.map((list, index) => {
               const isActive = list.id === selectListId;
               return (
                 <li
-                  key={key}
+                  id={`list-item-${list.id}`}
+                  key={list.id}
                   className={`list-tab-item ${isActive ? "active" : ""}`}
+                  role="tab"
+                  tabIndex="0"
+                  aria-selected={list.id === selectListId}
                   onClick={() => handleSelectList(list.id)}
+                  onKeyDown={(event) => handleKeyDown(event, index)}
                 >
                   {list.title}
                 </li>
