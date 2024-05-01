@@ -7,8 +7,10 @@ $button-height: 40px;
 $large-font-size: large;
 
 .signup {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
+  padding: 20px;
 
   &-form {
     margin: 25px 0;
@@ -27,12 +29,25 @@ $large-font-size: large;
   &-button {
     background-color: $primary-color;
     color: #ffffff;
-    width: 100px;
+    width: 100%;
+    max-width: 100px;
     height: $button-height;
     border-radius: 5px;
   }
 
   .error-message {
     color: $error-color;
+  }
+}
+
+@media (max-width: 768px) {
+  .signup {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 320px) {
+  .signup {
+    padding: 10px;
   }
 }

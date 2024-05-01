@@ -1,6 +1,5 @@
 @charset "utf-8";
 
-// Variables for commonly used values
 $main-color: #242f9b;
 $error-color: #ff3333;
 $font-color: #555555;
@@ -9,37 +8,54 @@ $button-height: 40px;
 $border-radius: 5px;
 
 .edit-list {
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 20px;
 
   &-form {
     color: $font-color;
   }
 
   &-title {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     margin-bottom: 25px;
   }
 
-  .delete-list-button {
-    color: $error-color;
-    border: solid 1px $error-color;
-    width: $button-width;
+  .delete-list-button,
+  .edit-list-button {
+    width: 100%;
+    max-width: $button-width;
     height: $button-height;
     margin: 25px 5px;
     border-radius: $border-radius;
   }
 
+  .delete-list-button {
+    color: $error-color;
+    border: solid 1px $error-color;
+  }
+
   .edit-list-button {
     background-color: $main-color;
-    color: #ffffff; // Using literal for white as it's commonly understood
-    width: $button-width;
-    height: $button-height;
-    border-radius: $border-radius;
-    border: none; // Ensuring no border is applied unless specified
+    color: #ffffff;
+    border: none;
   }
 
   .error-message {
     color: $error-color;
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-list {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 320px) {
+  .edit-list {
+    padding: 10px;
   }
 }

@@ -1,7 +1,8 @@
 .taskList {
-  margin: 50px auto;
+  margin: 20px auto;
   list-style: none;
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
 }
 .taskList .list-header {
   display: flex;
@@ -14,12 +15,14 @@
   list-style: none;
   display: flex;
   overflow-x: auto;
+  padding: 0;
 }
 .taskList .list-tab .list-tab-item {
   flex-shrink: 0;
-  width: 100px;
-  padding: 0 25px;
-  text-overflow: normal;
+  width: auto;
+  min-width: 100px;
+  padding: 10px 15px;
+  text-overflow: ellipsis;
   margin-right: 5px;
   border: solid 1px #242f9b;
   justify-content: center;
@@ -39,10 +42,10 @@
 .taskList .tasks .task-item {
   list-style-type: none;
   height: auto;
-  width: calc(100% - 25px);
+  width: 100%;
   background-color: #f5f5f5;
-  padding: 25px;
-  font-size: large;
+  padding: 15px;
+  font-size: medium;
   border: solid 1px #ffffff;
 }
 .taskList .tasks .task-item .task-item-link {
@@ -55,9 +58,36 @@
   color: #ff3333;
 }
 .taskList .display-select-wrapper {
-  width: 100px;
-  margin: 0 0 25px auto;
+  width: 25%;
+  margin: 0 10px 25px auto;
 }
 .taskList .display-select-wrapper .display-select {
   width: 100%;
-} /*# sourceMappingURL=home.css.map */
+}
+
+@media (max-width: 320px) {
+  .taskList {
+    margin: 10px;
+  }
+  .taskList .list-tab-item {
+    padding: 5px 10px;
+    min-width: 80px;
+  }
+  .taskList .task-item {
+    padding: 10px;
+    font-size: small;
+  }
+}
+@media (max-width: 768px) {
+  .taskList {
+    margin: 15px auto;
+  }
+  .taskList .list-tab-item {
+    padding: 8px 12px;
+    min-width: 90px;
+  }
+  .taskList .task-item {
+    padding: 12px;
+    font-size: medium;
+  }
+}/*# sourceMappingURL=home.css.map */

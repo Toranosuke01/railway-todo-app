@@ -1,6 +1,8 @@
 .signup {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
+  padding: 20px;
 }
 .signup-form {
   margin: 25px 0;
@@ -17,10 +19,22 @@
 .signup-button {
   background-color: #242f9b;
   color: #ffffff;
-  width: 100px;
+  width: 100%;
+  max-width: 100px;
   height: 40px;
   border-radius: 5px;
 }
 .signup .error-message {
   color: #ff3333;
-} /*# sourceMappingURL=signUp.css.map */
+}
+
+@media (max-width: 768px) {
+  .signup {
+    padding: 15px;
+  }
+}
+@media (max-width: 320px) {
+  .signup {
+    padding: 10px;
+  }
+}/*# sourceMappingURL=signUp.css.map */

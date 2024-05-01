@@ -10,9 +10,32 @@ $text-color: #ffffff;
   color: $text-color;
   display: flex;
   justify-content: space-between;
+  padding: 0 10px;
 
   .sign-out-button {
     color: $text-color;
     margin: auto 25px auto auto;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 60px;
+    .sign-out-button {
+      margin: auto 10px auto auto;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 50px;
+    justify-content: center;
+    .sign-out-button {
+      position: absolute;
+      right: 10px;
+      margin: auto;
+    }
   }
 }

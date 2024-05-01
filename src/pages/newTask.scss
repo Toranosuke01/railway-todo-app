@@ -5,8 +5,10 @@ $font-color: #555555;
 $error-color: #ff3333;
 
 .new-task {
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 20px;
 
   &-form {
     color: $font-color;
@@ -15,23 +17,47 @@ $error-color: #ff3333;
   &-select-list,
   &-title,
   &-detail {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     margin-bottom: 25px;
   }
 
   &-detail {
     height: 200px;
+    overflow: auto;
   }
 
   &-button {
     background-color: $primary-color;
     color: #ffffff;
-    width: 80px;
+    width: 100%;
+    max-width: 80px;
     height: 40px;
     border-radius: 5px;
+    padding: 0 10px;
   }
 }
 
 .error-message {
   color: $error-color;
+  padding: 10px 0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .new-task {
+    padding: 15px;
+
+    &-select-list,
+    &-title,
+    &-detail {
+      max-width: none;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .new-task {
+    padding: 10px;
+  }
 }

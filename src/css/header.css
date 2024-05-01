@@ -5,8 +5,30 @@
   color: #ffffff;
   display: flex;
   justify-content: space-between;
+  padding: 0 10px;
 }
 .header .sign-out-button {
   color: #ffffff;
   margin: auto 25px auto auto;
-} /*# sourceMappingURL=header.css.map */
+  padding: 10px 20px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 60px;
+  }
+  .header .sign-out-button {
+    margin: auto 10px auto auto;
+  }
+}
+@media (max-width: 480px) {
+  .header {
+    height: 50px;
+    justify-content: center;
+  }
+  .header .sign-out-button {
+    position: absolute;
+    right: 10px;
+    margin: auto;
+  }
+}/*# sourceMappingURL=header.css.map */

@@ -1,27 +1,47 @@
 .new-task {
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 20px;
 }
 .new-task-form {
   color: #555555;
 }
-.new-task-select-list,
-.new-task-title,
-.new-task-detail {
-  width: 300px;
+.new-task-select-list, .new-task-title, .new-task-detail {
+  width: 100%;
+  max-width: 300px;
   margin-bottom: 25px;
 }
 .new-task-detail {
   height: 200px;
+  overflow: auto;
 }
 .new-task-button {
   background-color: #242f9b;
   color: #ffffff;
-  width: 80px;
+  width: 100%;
+  max-width: 80px;
   height: 40px;
   border-radius: 5px;
+  padding: 0 10px;
 }
 
 .error-message {
   color: #ff3333;
-} /*# sourceMappingURL=newTask.css.map */
+  padding: 10px 0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .new-task {
+    padding: 15px;
+  }
+  .new-task-select-list, .new-task-title, .new-task-detail {
+    max-width: none;
+  }
+}
+@media (max-width: 320px) {
+  .new-task {
+    padding: 10px;
+  }
+}/*# sourceMappingURL=newTask.css.map */

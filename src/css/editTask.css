@@ -1,30 +1,51 @@
 .edit-task {
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 20px;
 }
 .edit-task-form {
   color: #555555;
 }
-.edit-task-title,
-.edit-task-detail {
-  width: 300px;
+.edit-task-title, .edit-task-detail {
+  width: 100%;
+  max-width: 300px;
   margin-bottom: 25px;
+}
+.edit-task-detail {
+  height: 200px;
+  overflow: auto;
+}
+.edit-task .delete-task-button,
+.edit-task .edit-task-button {
+  width: 100%;
+  max-width: 80px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px 0;
 }
 .edit-task .delete-task-button {
   color: #ff3333;
   border: solid 1px #ff3333;
-  width: 80px;
-  height: 40px;
-  margin: 25px 5px;
-  border-radius: 5px;
 }
 .edit-task .edit-task-button {
   background-color: #242f9b;
   color: #ffffff;
-  width: 80px;
-  height: 40px;
-  border-radius: 5px;
 }
 .edit-task .error-message {
   color: #ff3333;
-} /*# sourceMappingURL=editTask.css.map */
+}
+
+@media (max-width: 768px) {
+  .edit-task {
+    padding: 15px;
+  }
+  .edit-task-title, .edit-task-detail {
+    max-width: none;
+  }
+}
+@media (max-width: 320px) {
+  .edit-task {
+    padding: 10px;
+  }
+}/*# sourceMappingURL=editTask.css.map */

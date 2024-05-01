@@ -7,8 +7,10 @@ $button-height: 40px;
 $large-font-size: large;
 
 .signin {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
+  padding: 20px;
 
   &-form {
     margin: 25px 0;
@@ -17,7 +19,8 @@ $large-font-size: large;
   &-button {
     background-color: $primary-color;
     color: #ffffff;
-    width: 100px;
+    width: 100%;
+    max-width: 100px;
     height: $button-height;
     border-radius: 5px;
   }
@@ -37,5 +40,17 @@ $large-font-size: large;
 
   .error-message {
     color: $error-color;
+  }
+}
+
+@media (max-width: 768px) {
+  .signin {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 320px) {
+  .signin {
+    padding: 20px;
   }
 }

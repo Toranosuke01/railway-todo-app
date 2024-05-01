@@ -8,8 +8,10 @@ $button-height: 40px;
 $border-radius: 5px;
 
 .edit-task {
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 20px;
 
   &-form {
     color: $font-color;
@@ -17,28 +19,53 @@ $border-radius: 5px;
 
   &-title,
   &-detail {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     margin-bottom: 25px;
+  }
+
+  &-detail {
+    height: 200px;
+    overflow: auto;
+  }
+
+  .delete-task-button,
+  .edit-task-button {
+    width: 100%;
+    max-width: $button-width;
+    height: $button-height;
+    border-radius: $border-radius;
+    margin: 10px 0;
   }
 
   .delete-task-button {
     color: $error-color;
     border: solid 1px $error-color;
-    width: $button-width;
-    height: $button-height;
-    margin: 25px 5px;
-    border-radius: $border-radius;
   }
 
   .edit-task-button {
     background-color: $primary-color;
     color: #ffffff;
-    width: $button-width;
-    height: $button-height;
-    border-radius: $border-radius;
   }
 
   .error-message {
     color: $error-color;
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-task {
+    padding: 15px;
+
+    &-title,
+    &-detail {
+      max-width: none;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .edit-task {
+    padding: 10px;
   }
 }
