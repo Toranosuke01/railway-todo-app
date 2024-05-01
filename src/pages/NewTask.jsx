@@ -20,7 +20,7 @@ export const NewTask = () => {
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
-  const hundleLimitChange = (e) => setLimit(e.target.value);
+  const handleLimitChange = (e) => setLimit(e.target.value);
 
   const onCreateTask = () => {
     const data = {
@@ -96,7 +96,7 @@ export const NewTask = () => {
             value={limit}
             min={minLimit}
             max="2100-01-01T00:00"
-            onChange={hundleLimitChange}
+            onChange={handleLimitChange}
             className="todo-limit"
           />
           <br />

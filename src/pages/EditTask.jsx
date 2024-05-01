@@ -5,6 +5,8 @@ import { useCookies } from "react-cookie";
 import { url } from "../const";
 import { useNavigate, useParams } from "react-router-dom";
 import "../css/editTask.css";
+import useCurrentTime from "../hooks/useCurrentTime";
+import { formatDateTimeWithoutSeconds } from "../utils/dateUtils";
 
 export const EditTask = () => {
   const navigate = useNavigate();
@@ -12,10 +14,13 @@ export const EditTask = () => {
   const [cookies] = useCookies();
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [limit, setLimit] = useState("");
+  const [minLimit] = useState(useCurrentTime());
   const [isDone, setIsDone] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
+  const handleLimitChange = (e) => setLimit(e.target.value);
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
   const onUpdateTask = () => {
     console.log(isDone);
@@ -23,6 +28,7 @@ export const EditTask = () => {
       title: title,
       detail: detail,
       done: isDone,
+      limit: `${limit}:00Z`,
     };
 
     axios
@@ -64,8 +70,10 @@ export const EditTask = () => {
       })
       .then((res) => {
         const task = res.data;
+        console.log(task);
         setTitle(task.title);
         setDetail(task.detail);
+        setLimit(formatDateTimeWithoutSeconds(task.limit));
         setIsDone(task.done);
       })
       .catch((err) => {
@@ -97,6 +105,18 @@ export const EditTask = () => {
             className="edit-task-detail"
             value={detail}
           />
+          <br />
+          <label>期限</label>
+          <br />
+          <input
+            type="datetime-local"
+            value={limit}
+            min={minLimit}
+            max="2100-01-01T00:00"
+            onChange={handleLimitChange}
+            className="todo-limit"
+          />
+          <br />
           <br />
           <div>
             <input

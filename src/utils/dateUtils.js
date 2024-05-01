@@ -9,3 +9,8 @@ export function convertJstDate(date) {
   });
   return japanTime.replace(/\//g, "-").replace(/ /, "T");
 }
+
+export function formatDateTimeWithoutSeconds(dateTimeStr) {
+  const date = new Date(dateTimeStr);
+  return date.toISOString().slice(0, 16); // "YYYY-MM-DDTHH:MM" 形式に変換
+}
