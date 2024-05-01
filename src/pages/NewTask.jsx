@@ -5,29 +5,31 @@ import { url } from "../const";
 import { Header } from "../components/Header";
 import "../css/newTask.css";
 import { useNavigate } from "react-router-dom";
-import useCurrentTime from "../hooks/useCurrentTime";
+import { formatJstDateWithoutSeconds } from "../utils/dateUtils";
 
 export const NewTask = () => {
   const [selectListId, setSelectListId] = useState();
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
-  const [limit, setLimit] = useState(useCurrentTime());
-  const [minLimit] = useState(useCurrentTime());
+  const [limit, setLimit] = useState(new Date());
+  const [minLimit] = useState(new Date());
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const navigate = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
-  const handleLimitChange = (e) => setLimit(e.target.value);
+  const handleLimitChange = (e) => {
+    setLimit(new Date(e.target.value));
+  };
 
   const onCreateTask = () => {
     const data = {
       title,
       detail,
       done: false,
-      limit: `${limit}:00Z`,
+      limit: limit.toISOString(),
     };
     console.log(data);
 
@@ -93,12 +95,13 @@ export const NewTask = () => {
           <br />
           <input
             type="datetime-local"
-            value={limit}
-            min={minLimit}
+            value={formatJstDateWithoutSeconds(limit)}
+            min={formatJstDateWithoutSeconds(minLimit)}
             max="2100-01-01T00:00"
             onChange={handleLimitChange}
             className="todo-limit"
           />
+          {console.log(formatJstDateWithoutSeconds(minLimit))}
           <br />
           <br />
           <button type="button" className="new-task-button" onClick={onCreateTask}>

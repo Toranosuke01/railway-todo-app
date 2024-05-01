@@ -5,6 +5,7 @@ import axios from "axios";
 import { Header } from "../components/Header";
 import { url } from "../const";
 import "../css/home.css";
+import { formatToReadableDateTime } from "../utils/dateUtils";
 
 export const Home = () => {
   const [isDoneDisplay, setIsDoneDisplay] = useState("todo"); // todo->未完了 done->完了
@@ -130,6 +131,8 @@ const Tasks = (props) => {
               <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
                 {task.title}
                 <br />
+                期限：{formatToReadableDateTime(task.limit)}
+                <br />
                 {task.done ? "完了" : "未完了"}
               </Link>
             </li>
@@ -149,10 +152,45 @@ const Tasks = (props) => {
             <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
               {task.title}
               <br />
+              <div>期限：{formatToReadableDateTime(task.limit)}</div>
+              <RemainingTime limit={new Date(task.limit)} />
+              <br />
               {task.done ? "完了" : "未完了"}
             </Link>
           </li>
         ))}
     </ul>
   );
+};
+
+const RemainingTime = ({ limit }) => {
+  const [remainingTime, setRemainingTime] = useState("");
+
+  useEffect(() => {
+    // 残り時間を計算する関数
+    const calculateRemainingTime = () => {
+      const now = new Date();
+      const difference = limit.getTime() - now.getTime();
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+        return `${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
+      } else {
+        return "期限切れです";
+      }
+    };
+
+    const intervalId = setInterval(() => {
+      const timeString = calculateRemainingTime();
+      setRemainingTime(timeString);
+    }, 1000);
+
+    // コンポーネントのクリーンアップ時にインターバルをクリア
+    return () => clearInterval(intervalId);
+  }, [limit]);
+
+  return <div>残り時間: {remainingTime}</div>;
 };
