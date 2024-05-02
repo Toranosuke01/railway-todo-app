@@ -84,8 +84,6 @@ $white: #ffffff;
     }
   }
 }
-
-// スマートフォン向けスタイル（最大幅320px）
 @media (max-width: 320px) {
   .taskList {
     margin: 10px;
@@ -100,7 +98,6 @@ $white: #ffffff;
   }
 }
 
-// タブレット向けスタイル（最大幅768px）
 @media (max-width: 768px) {
   .taskList {
     margin: 15px auto;

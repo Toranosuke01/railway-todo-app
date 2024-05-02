@@ -31,7 +31,6 @@ export const NewTask = () => {
       done: false,
       limit: limit.toISOString(),
     };
-    console.log(data);
 
     axios
       .post(`${url}/lists/${selectListId}/tasks`, data, {
@@ -101,7 +100,6 @@ export const NewTask = () => {
             onChange={handleLimitChange}
             className="todo-limit"
           />
-          {console.log(formatJstDateWithoutSeconds(minLimit))}
           <br />
           <br />
           <button type="button" className="new-task-button" onClick={onCreateTask}>
